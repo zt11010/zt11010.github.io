@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title><![CDATA[hexo+github搭建记录]]></title>
+    <url>%2F2019%2F02%2F19%2Fhexo-github%E6%90%AD%E5%BB%BA%E8%AE%B0%E5%BD%95%2F</url>
+    <content type="text"><![CDATA[之前直接在coding studio里面搭建可是文件路径总是有问题，以后再看看怎么解决吧。这里我是按网上教程边看边做，途中遇到不少问题好在都解决了。 我的平台Windows10 这是主页： 我的地址 第一步注册github这是主页： github主页 既然要再GitHub上搭建首先要有账号。 &lt; !–more–&gt; 第二步安装 git 之前去官网上去下载，网速实在不行，后面找到了一个网站可下载，完全可以正常使用。 下载地址 安装过程基本默认就好。 第三步安装node.js 环境需要。 下载地址 安装测试基本环境就这些：测试是否安装成功,打开cmd或power shell输入下面命令 nodejs :1node -v git :1. 1git --version 2. 1npm -v 第四步创建GitHub项目并将其与git进行连接 登录GitHub主页点击右上角+号选择New Repository,填写项目名 项目必须要遵守格式：账户名.github.io，不然接下来会有很多麻烦。还有选择Public，并且需要勾选Initialize this repository with a README 将git与GitHub连接起来 后面会直接用git将hexo生成的静态网页文件上传到GitHub创建的项目中。 先设置git的username和email 1.打开git bash输入： 1git config --global user.name &quot;zt&quot; 1这里的“zt”是你自己的用户名，自己定义 2.接着输入： 1git config --global user.email &quot;123**@163.com&quot; 1这里填邮箱，自己定义 3.生成SSH key： 这里我的git bash之前不在C盘导致出错 后来再C盘打开git bash才生成成功 1ssh-keygen -t rsa -C &quot;123**@163.com&quot; 1填刚才的邮箱，连续三个回车生成密钥，最后得到了两个文件：id_rsa和id_rsa.pub（默认存储路径是：C:\Users\Administrator\.ssh） 4.添加密钥到ssh-agent 1eval &quot;$(ssh-agent -s)&quot; 5.添加生成的ssh key到ssh-agent 1ssh-add ~/.ssh/id_rsa 6.登录GitHub点击头像下settings 添加ssh 新建new ssh key 标题自己定义key内容填C:\Users\Administrator.ssh文件夹下的id_rsa.pub文件内容（可用记事本打开复制）之后点击add ssh key 完成后输入： 1ssh -T git@github.com 1测试添加ssh是否成功。如果看到Hi后面是你的用户名，就说明成功了 # 问题： 假如ssh-key配置失败，那么只要以下步骤就能完全解决 首先，清除所有的key-pair 1ssh-add -D 1rm -r ~/.ssh 删除你在github中的public-key 重新生成ssh密钥对 1ssh-keygen -t rsa -C &quot;xxx@xxx.com&quot; 接下来正常操作在github上添加公钥public-key:1、首先在你的终端运行 xclip -sel c ~/.ssh/id_rsa.pub将公钥内容复制到剪切板2、在github上添加公钥时，直接复制即可3、保存 测试：在终端1ssh -T git@github.com # 第五步安装Hexo到一个合适的盘符新建文件夹存放hexo产生的工程源码我在F盘的GitHub文件夹里又建了blog来存放绝对路径为：F:\GitHub\blog 到该文件夹下开始安装Hexo，打开cmd或power shell或git输入： 1npm install hexo -g 1安装时间可能会有点长慢慢等待 检查是否安装成功输入 1hexo -v 1成功安装会出现hexo-cli：等信息 生成工程： 1hexo init 12初始化该文件夹，完成后会出现好几个文件和文件夹完成后显示：Start blogging with Hexo！ 安装需要的组件： 1npm install 生成静态文件： 1hexo g 开启服务器本地查看： 1hexo s 1点击或复制出现的链接在浏览器打开，基本就可以看见生成的网页了。 第六步部署到GitHub上还是在该文件夹下打开_config.yml文件修改deploy那里： 1234deploy: type: git repository: git@gitbub.com:username/库地址 branch: master 123注意：type、repository、branch冒号的后面都有一个空格这里的repository从GitHub项目从clone or download 按钮点击显示链接选择ssh进行复制得到。 新建博客： 1hexo new post &quot;博客名&quot; 12这会生成一个.md文件，可以用一些编译器进行编译写作。我用的就是Visual Studio Code 部署前再次生成一次静态网页文件： 1hexo g 安装拓展： 1npm install --save hexo-deployer-git 12不安装的话会报ERROR Deployer not found: git 最终部署： 1hexo d # 一步生成部署 1hexo g -d next页面优化配置next 下载next主题 1git clone https://github.com/theme-next/hexo-theme-next themes/next 修改根目录“_config.yml”配置文件 1theme: next 优化教程123https://blog.csdn.net/qq_33699981/article/details/72716951https://segmentfault.com/a/1190000013660164/#articleHeader7]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[新开始]]></title>
+    <url>%2F2019%2F02%2F19%2F%E6%96%B0%E5%BC%80%E5%A7%8B%2F</url>
+    <content type="text"><![CDATA[你好这是一个新的页面，如果显示，那我的博客终于建好了]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[Hello World]]></title>
+    <url>%2F2019%2F02%2F19%2Fhello-world%2F</url>
+    <content type="text"><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick StartCreate a new post1$ hexo new "My New Post" More info: Writing Run server1$ hexo server More info: Server Generate static files1$ hexo generate More info: Generating Deploy to remote sites1$ hexo deploy More info: Deployment]]></content>
+  </entry>
+</search>
